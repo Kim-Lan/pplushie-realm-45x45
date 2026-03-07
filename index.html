@@ -811,7 +811,7 @@
               });
             }
 
-            function createEmptyButton() {
+            function createEmptyPin() {
               const pinZone = document.getElementById("pin-zone");
               const emptyButton = document.createElement("button");
               emptyButton.className = "bigbut";
@@ -822,7 +822,7 @@
               if (selected != 0) {
                 selected.classList.remove("selected");
                 clearPinZone();
-                createEmptyButton();
+                createEmptyPin();
                 selected = 0;
               }
             }
@@ -896,7 +896,7 @@
 
                     // Deselect and clear pin zone
                     clearPinZone();
-                    createEmptyButton();
+                    createEmptyPin();
                     selected.classList.remove("selected");
                     button.classList.remove("selected");
                     selected = 0;
@@ -909,7 +909,7 @@
 
                     // Immediately deselect and clear pin zone
                     clearPinZone();
-                    createEmptyButton();
+                    createEmptyPin();
                     selected.classList.remove("selected");
                     button.classList.remove("selected");
 
