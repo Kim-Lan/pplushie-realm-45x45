@@ -1236,6 +1236,7 @@
             }
             
             function finishCategory(b) {
+              b.innerHTML = '<b>' + b.category + '</b>';
               b.disabled = true;
               b.classList.add("completed");
               b.style.background = stringToLightColor(b.category);
