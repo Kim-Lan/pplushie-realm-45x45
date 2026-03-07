@@ -610,13 +610,16 @@
     </header>
     <div class="layout">
         <div id="board-wrapper">
-            <div id="pin-zone"></div>
+            <div id="pin-zone">
+              <span class="pin-label">Selected:</span>
+              <button class="bigbut"></button>
+            </div>
             <div id="priority-lane"></div>
             <div id="board"></div>
         </div>
     </div>
     <footer class="page-footer">
-        Forked from <a href="https://thomaswc.com/2025.html">thomaswc.com/2025.html</a>. All modifications &copy; 2025 Peter Vessenes, <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0</a>. Fork me at <a href="https://github.com/vessenes/2025is45x45">github.com</a>
+        Forked from <a href="https://thomaswc.com/2025.html">thomaswc.com/2025.html</a> and <a href="https://github.com/vessenes/2025is45x45">vessenes/2025is45x45</a>.
     </footer>
 </div>
 <div id="reset-indicator">
@@ -795,16 +798,31 @@
             function clearPinZone() {
               const pinZone = document.getElementById("pin-zone");
               pinZone.innerHTML = "";
+
+              const label = document.createElement("span");
+              label.className = "pin-label";
+              label.textContent = "Selected:";
+              pinZone.appendChild(label);
+
+
               // Remove dimming from any pinned originals
               document.querySelectorAll(".pinned-original").forEach(el => {
                 el.classList.remove("pinned-original");
               });
             }
 
+            function createEmptyButton() {
+              const pinZone = document.getElementById("pin-zone");
+              const emptyButton = document.createElement("button");
+              emptyButton.className = "bigbut";
+              pinZone.appendChild(emptyButton);
+            }
+
             function deselect() {
               if (selected != 0) {
                 selected.classList.remove("selected");
                 clearPinZone();
+                createEmptyButton();
                 selected = 0;
               }
             }
@@ -825,10 +843,10 @@
               };
 
               // Add label and clone to pin zone
-              const label = document.createElement("span");
-              label.className = "pin-label";
-              label.textContent = "Selected:";
-              pinZone.appendChild(label);
+              // const label = document.createElement("span");
+              // label.className = "pin-label";
+              // label.textContent = "Selected:";
+              // pinZone.appendChild(label);
               pinZone.appendChild(clone);
 
               // Dim the original
@@ -878,6 +896,7 @@
 
                     // Deselect and clear pin zone
                     clearPinZone();
+                    createEmptyButton();
                     selected.classList.remove("selected");
                     button.classList.remove("selected");
                     selected = 0;
@@ -890,6 +909,7 @@
 
                     // Immediately deselect and clear pin zone
                     clearPinZone();
+                    createEmptyButton();
                     selected.classList.remove("selected");
                     button.classList.remove("selected");
 
