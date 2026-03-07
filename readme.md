@@ -1,7 +1,5 @@
-# UI updates for ThomasWC's 2025 Puzzle
+# pplushie realm community 45x45=2025
 
-Originally from https://thomaswc.com/2025.html. 
+45x45=2025 game with custom categories and lists compiled by the pplushie realm community at https://www.twitch.tv/camkatsu.
 
-No clue changes made, just UI / QOL upgrades. 
-
-Refer to the original for license information - any modifications are CC0 licensed by me, Peter Vessenes
+Original from https://thomaswc.com/2025.html. UI Updates from [vessenes/2025is45x45](https://github.com/vessenes/2025is45x45).
