@@ -996,14 +996,15 @@
               }
               let wrapper = button.closest(".cluster-item");
               if (!wrapper) {
-                wrapper = document.createElement("div");
-                wrapper.className = "cluster-item";
-                wrapper.appendChild(button);
-                list.appendChild(wrapper);
                 const td = button.closest("td");
                 if (td) {
                   td.remove();
                 }
+
+                wrapper = document.createElement("div");
+                wrapper.className = "cluster-item";
+                wrapper.appendChild(button);
+                list.appendChild(wrapper);
               }
               list.querySelectorAll(".cluster-item.recent").forEach(item => {
                 item.classList.remove("recent");
