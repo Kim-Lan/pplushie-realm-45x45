@@ -235,7 +235,7 @@
             backdrop-filter: blur(4px);
             padding: 8px 14px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            display: none;
+            //display: none;
         }
 
         #pin-zone:not(:empty) {
@@ -471,6 +471,18 @@
             animation: holdFill 1s linear forwards;
         }
 
+        #scroll-btn {
+          cursor: pointer;
+        }
+
+        #scroll-btn:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        #scroll-btn:active {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+
         .score-pop {
             animation: scorePop 0.3s ease;
         }
@@ -599,6 +611,7 @@
                 <span class="shortcut-key"><span class="keycap">S</span> Shuffle</span>
                 <span class="shortcut-key"><span class="keycap">/</span> Search</span>
                 <span class="shortcut-key"><span class="keycap">Esc</span> Clear search</span>
+                <span class="shortcut-key" id="scroll-btn">Scroll to Top</span>
             </div>
             <div id="status">
                 <span class="stat">Score: <span id="score">0</span></span>
@@ -796,6 +809,12 @@
        
             // Functions
             
+            const scrollBtn = document.getElementById("scroll-btn");
+            scrollBtn.onclick = (e) => {
+              const wrapper = document.getElementById("board-wrapper");
+              wrapper.scrollTo(0, 0);
+            }
+
             function clearPinZone() {
               const pinZone = document.getElementById("pin-zone");
               pinZone.innerHTML = "";
