@@ -1,13 +1,15 @@
 // Globals
 const M = 45; // Board size
 
-var score = 0;
-var mistakes = 0;
+let score = 0;
+let mistakes = 0;
 
-var selected = 0; // The currently selected button, if any.
+let selected = null; // The currently selected button, if any.
 
-var wordlist = []; // Actually, a list of (word, category) pairs
-var resetHoldTimer = null;
+const wordlist = []; // Actually, a list of (word, category) pairs
+let resetHoldTimer = null;
+
+let lastGroup = null;
 
 // Functions
 function clearPinZone() {
@@ -33,11 +35,11 @@ function createEmptyPin() {
 }
 
 function deselect() {
-  if (selected != 0) {
+  if (selected) {
     selected.classList.remove("selected");
     clearPinZone();
     createEmptyPin();
-    selected = 0;
+    selected = null;
   }
 }
 
@@ -99,22 +101,26 @@ function wireButton(button) {
     }
     button.classList.add("selected");
 
-    if (selected == 0) {
+    if (button.closest(".cluster-item")) {
+      lastGroup = button;
+    }
+
+    if (!selected) {
       selected = button;
       pinSelected(button);
       return;
     }
 
     if (button.category == selected.category) {
-      firstbut = button;
-      secondbut = selected;
+      const firstbut = button;
+      const secondbut = selected;
 
       // Deselect and clear pin zone
       clearPinZone();
       createEmptyPin();
       selected.classList.remove("selected");
       button.classList.remove("selected");
-      selected = 0;
+      selected = null;
       didMatch = performMatch(firstbut, secondbut);
     } else {
       mistakes = mistakes + 1;
@@ -148,7 +154,7 @@ function wireButton(button) {
         { once: true },
       );
 
-      selected = 0;
+      selected = null;
     }
     if (!didMatch) {
       saveState();
@@ -356,6 +362,7 @@ function performMatch(firstbut, secondbut) {
     finishCategory(firstbut);
   } else {
     moveClusterToPriority(firstbut);
+    lastGroup = firstbut;
     clearSearch();
     applyFilter();
   }
@@ -405,7 +412,8 @@ function resetGame() {
   localStorage.clear();
   score = 0;
   mistakes = 0;
-  selected = 0;
+  selected = null;
+  lastGroup = null;
   clearPinZone();
   createEmptyPin();
   document.getElementById("score").textContent = score;
@@ -930,4 +938,15 @@ function scrollToTop(event) {
   event.preventDefault();
   const wrapper = document.getElementById("board-wrapper");
   wrapper.scrollTo(0, 0);
+}
+
+const lastBtn = document.getElementById("last-btn");
+lastBtn.onclick = selectLastGroup;
+
+function selectLastGroup(event) {
+  if (lastGroup) {
+    selected = lastGroup;
+    lastGroup.classList.add("selected");
+    pinSelected(selected);
+  }
 }
