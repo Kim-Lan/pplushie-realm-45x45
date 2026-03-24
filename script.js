@@ -867,6 +867,10 @@ document.addEventListener("keydown", (event) => {
     focusSearch(event);
     return;
   }
+  if (event.key === "1") {
+    selectLastGroup(event);
+    return;
+  }
   if (event.key === "s" || event.key === "S") {
     shuffleBoard();
     return;
