@@ -848,6 +848,10 @@ document.addEventListener("keydown", (event) => {
     clearSearch(event);
     return;
   }
+  if (event.key === "Home") {
+    scrollToTop(event);
+    return;
+  }
   if (shouldIgnoreHotkeys(event.target)) {
     return;
   }
@@ -864,6 +868,7 @@ document.addEventListener("keydown", (event) => {
     return;
   }
 });
+
 document.addEventListener("keyup", (event) => {
   if (event.key === "r" || event.key === "R") {
     releaseReset();
@@ -919,7 +924,9 @@ function clearSearch(event) {
 }
 
 const scrollBtn = document.getElementById("scroll-btn");
-scrollBtn.onclick = (e) => {
+scrollBtn.onclick = scrollToTop;
+
+function scrollToTop(event) {
   const wrapper = document.getElementById("board-wrapper");
   wrapper.scrollTo(0, 0);
-};
+}
