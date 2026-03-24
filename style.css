@@ -255,6 +255,10 @@ button.bigbut.selected {
   opacity: 0.3;
 }
 
+button.bigbut.hidden {
+  visibility: hidden;
+}
+
 button.bigbut:disabled {
   opacity: 0.55;
   cursor: not-allowed;

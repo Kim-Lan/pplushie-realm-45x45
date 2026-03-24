@@ -30,7 +30,7 @@ function clearPinZone() {
 function createEmptyPin() {
   const pinZone = document.getElementById("pin-zone");
   const emptyButton = document.createElement("button");
-  emptyButton.className = "bigbut";
+  emptyButton.className = "bigbut hidden";
   pinZone.appendChild(emptyButton);
 }
 
