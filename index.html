@@ -634,7 +634,7 @@
     </footer>
 </div>
 <div id="reset-indicator">
-    <span id="reset-label">Hold R to reset</span>
+    <span id="reset-label">Hold to reset</span>
     <div class="reset-bar"></div>
 </div>
 
@@ -1223,9 +1223,9 @@
                 if (state === "done") {
                   label.textContent = "Reset complete!";
                 } else if (state === "hold") {
-                  label.textContent = "Hold R to reset";
+                  label.textContent = "Hold to reset";
                 } else {
-                  label.textContent = "Hold R to reset";
+                  label.textContent = "Hold to reset";
                 }
               }
               indicator.classList.toggle("active", state === "hold" || state === "done");
