@@ -445,11 +445,11 @@ function showResetIndicator(state) {
   }
   if (label) {
     if (state === "done") {
-      label.textContent = "Reset complete!";
+      label.textContent = "reset complete!";
     } else if (state === "hold") {
-      label.textContent = "Hold to reset";
+      label.textContent = "hold to reset";
     } else {
-      label.textContent = "Hold to reset";
+      label.textContent = "hold to reset";
     }
   }
   indicator.classList.toggle("active", state === "hold" || state === "done");
