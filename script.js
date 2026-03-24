@@ -18,7 +18,7 @@ function clearPinZone() {
 
   const label = document.createElement("span");
   label.className = "pin-label";
-  label.textContent = "Selected:";
+  label.textContent = "selected:";
   pinZone.appendChild(label);
 
   // Remove dimming from any pinned originals
@@ -61,7 +61,7 @@ function pinSelected(button) {
   // Add label and clone to pin zone
   // const label = document.createElement("span");
   // label.className = "pin-label";
-  // label.textContent = "Selected:";
+  // label.textContent = "selected:";
   // pinZone.appendChild(label);
   pinZone.appendChild(clone);
 
