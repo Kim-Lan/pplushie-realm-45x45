@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap');
+
 :root {
   --bg: #f6f1e7;
   --bg-accent: #dfe9e8;
@@ -18,7 +20,7 @@
 body {
   margin: 0;
   color: var(--ink);
-  font-family: "Avenir Next", "Gill Sans", "Optima", "Trebuchet MS", sans-serif;
+  font-family: "Radio Canada", sans-serif;
   background:
     radial-gradient(1200px 800px at 10% 0%, #fcead0 0%, transparent 60%),
     radial-gradient(900px 600px at 100% 0%, #d9efe8 0%, transparent 55%),
