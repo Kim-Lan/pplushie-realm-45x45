@@ -945,6 +945,9 @@ lastBtn.onclick = selectLastGroup;
 
 function selectLastGroup(event) {
   if (lastGroup) {
+    if (selected) {
+      selected.classList.remove("selected");
+    }
     selected = lastGroup;
     lastGroup.classList.add("selected");
     pinSelected(selected);
