@@ -396,6 +396,7 @@
         }
 
         .shortcut-key {
+            cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -404,6 +405,14 @@
             background: rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(0, 0, 0, 0.1);
             font-weight: 600;
+        }
+
+        .shortcut-key:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .shortcut-key:active {
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .keycap {
@@ -469,18 +478,6 @@
 
         #reset-indicator.holding .reset-bar::after {
             animation: holdFill 1s linear forwards;
-        }
-
-        #scroll-btn {
-          cursor: pointer;
-        }
-
-        #scroll-btn:hover {
-          background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        #scroll-btn:active {
-          background-color: rgba(0, 0, 0, 0.2);
         }
 
         .score-pop {
@@ -607,10 +604,10 @@
         <div class="topbar-content">
             <div class="title">Make 45 groups of 45!</div>
             <div class="shortcuts">
-                <span class="shortcut-key"><span class="keycap">R</span> Hold to reset</span>
-                <span class="shortcut-key"><span class="keycap">S</span> Shuffle</span>
-                <span class="shortcut-key"><span class="keycap">/</span> Search</span>
-                <span class="shortcut-key"><span class="keycap">Esc</span> Clear search</span>
+                <span class="shortcut-key" id="reset-btn"><span class="keycap">R</span> Hold to reset</span>
+                <span class="shortcut-key" id="shuffle-btn"><span class="keycap">S</span> Shuffle</span>
+                <span class="shortcut-key" id="search-btn"><span class="keycap">/</span> Search</span>
+                <span class="shortcut-key" id="clear-btn"><span class="keycap">Esc</span> Clear search</span>
                 <span class="shortcut-key" id="scroll-btn">Scroll to Top</span>
             </div>
             <div id="status">
@@ -1194,6 +1191,7 @@
               mistakes = 0;
               selected = 0;
               clearPinZone();
+              createEmptyPin();
               document.getElementById("score").textContent = score;
               document.getElementById("mistakes").textContent = mistakes;
               const input = document.getElementById("filter-input");
@@ -1620,30 +1618,39 @@
             loadState();
             document.getElementById("filter-input").addEventListener("input", applyFilter);
             applyFilter();
+
             document.addEventListener("keydown", (event) => {
-              if (event.key === "Escape") {
-                deselect();
-                const input = document.getElementById("filter-input");
-                input.value = "";
-                input.blur();
-                applyFilter();
-                return;
-              }
-              if (shouldIgnoreHotkeys(event.target)) {
-                return;
-              }
-              if (event.key === "/") {
-                event.preventDefault();
-                const input = document.getElementById("filter-input");
-                input.focus();
-                input.select();
-                return;
-              }
-              if (event.key === "s" || event.key === "S") {
-                shuffleBoard();
-                return;
-              }
-              if (event.key === "r" || event.key === "R") {
+                if (event.key === "Escape") {
+                  clearSearch(event);
+                  return;
+                }
+                if (shouldIgnoreHotkeys(event.target)) {
+                  return;
+                }
+                if (event.key === "/") {
+                  focusSearch(event);
+                  return;
+                }
+                if (event.key === "s" || event.key === "S") {
+                  shuffleBoard();
+                  return;
+                }
+                if (event.key === "r" || event.key === "R") {
+                  holdReset(event);
+                  return;
+                }
+            });
+            document.addEventListener("keyup", (event) => {
+                if (event.key === "r" || event.key === "R") {
+                  releaseReset();
+                }
+            });
+
+            const resetBtn = document.getElementById("reset-btn");
+            resetBtn.addEventListener("mousedown", holdReset);
+            resetBtn.addEventListener("mouseup", releaseReset);
+
+            function holdReset(event) {
                 if (resetHoldTimer || event.repeat) {
                   return;
                 }
@@ -1653,17 +1660,39 @@
                   resetGame();
                   showResetIndicator("done");
                 }, 1000);
-              }
-            });
-            document.addEventListener("keyup", (event) => {
-              if (event.key === "r" || event.key === "R") {
+            }
+
+            function releaseReset(event) {
                 if (resetHoldTimer) {
-                  clearTimeout(resetHoldTimer);
-                  resetHoldTimer = null;
-                  showResetIndicator("cancel");
+                    clearTimeout(resetHoldTimer);
+                    resetHoldTimer = null;
+                    showResetIndicator("cancel");
                 }
-              }
-            });
+            }
+
+            const shuffleBtn = document.getElementById("shuffle-btn");
+            shuffleBtn.onclick = shuffleBoard;
+
+            const searchBtn = document.getElementById("search-btn");
+            searchBtn.onclick = focusSearch;
+
+            function focusSearch(event) {
+                event.preventDefault();
+                const input = document.getElementById("filter-input");
+                input.focus();
+                input.select();
+            }
+
+            const clearBtn = document.getElementById("clear-btn");
+            clearBtn.onclick = clearSearch;
+
+            function clearSearch(event) {
+                deselect();
+                const input = document.getElementById("filter-input");
+                input.value = "";
+                input.blur();
+                applyFilter();
+            }
         </script>
 
 </html>
