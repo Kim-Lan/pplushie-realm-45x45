@@ -927,6 +927,7 @@ const scrollBtn = document.getElementById("scroll-btn");
 scrollBtn.onclick = scrollToTop;
 
 function scrollToTop(event) {
+  event.preventDefault();
   const wrapper = document.getElementById("board-wrapper");
   wrapper.scrollTo(0, 0);
 }
