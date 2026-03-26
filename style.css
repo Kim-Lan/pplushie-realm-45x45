@@ -185,6 +185,14 @@ td.tile-cell.expanded {
   z-index: 1000;
 }
 
+tr:nth-child(odd) td:nth-child(even) button {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+tr:nth-child(even) td:nth-child(odd) button {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
 button.bigbut {
   display: flex;
   flex-direction: column;
