@@ -360,6 +360,7 @@ function performMatch(firstbut, secondbut) {
   );
   if (firstbut.cluster.length == 45) {
     finishCategory(firstbut);
+	lastGroup = null;
   } else {
     moveClusterToPriority(firstbut);
     lastGroup = firstbut;
@@ -796,6 +797,7 @@ function loadState() {
         }
         const button = createClusterButton(block.category, block.cluster);
         if (block.cluster.length == 45) {
+		  button.innerHTML = "<b>" + button.category + "</b>";
           button.disabled = true;
           button.classList.add("completed");
           button.style.background = stringToLightColor(block.category);
