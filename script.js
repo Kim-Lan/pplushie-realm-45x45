@@ -80,18 +80,16 @@ function wireButton(button) {
     }
     button.hoverTimer = setTimeout(() => {
       button.classList.add("expanded");
-      const wrapper =
-        button.closest(".cluster-item") || button.closest("td.tile-cell");
+      const wrapper = button.closest(".cluster-item") || button.closest("td.tile-cell");
       if (wrapper) wrapper.classList.add("expanded");
-    }, 150);
+    }, 500);
   });
   button.addEventListener("mouseleave", () => {
     if (button.hoverTimer) {
       clearTimeout(button.hoverTimer);
     }
     button.classList.remove("expanded");
-    const wrapper =
-      button.closest(".cluster-item") || button.closest("td.tile-cell");
+    const wrapper = button.closest(".cluster-item") || button.closest("td.tile-cell");
     if (wrapper) wrapper.classList.remove("expanded");
   });
   button.onclick = function () {
