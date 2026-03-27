@@ -10,6 +10,7 @@ const wordlist = []; // Actually, a list of (word, category) pairs
 let resetHoldTimer = null;
 
 let lastGroup = null;
+let lastItem = null;
 
 // Functions
 function clearPinZone() {
@@ -108,6 +109,9 @@ function wireButton(button) {
     if (!selected) {
       selected = button;
       pinSelected(button);
+      if (!button.closest(".cluster-item")) {
+        lastItem = button;
+      }
       return;
     }
 
@@ -121,6 +125,7 @@ function wireButton(button) {
       selected.classList.remove("selected");
       button.classList.remove("selected");
       selected = null;
+      lastItem = null;
       didMatch = performMatch(firstbut, secondbut);
     } else {
       mistakes = mistakes + 1;
@@ -873,6 +878,10 @@ document.addEventListener("keydown", (event) => {
     selectLastGroup(event);
     return;
   }
+  if (event.key === "2") {
+    selectLastItem(event);
+    return;
+  }
   if (event.key === "s" || event.key === "S") {
     shuffleBoard();
     return;
@@ -946,8 +955,8 @@ function scrollToTop(event) {
   wrapper.scrollTo(0, 0);
 }
 
-const lastBtn = document.getElementById("last-btn");
-lastBtn.onclick = selectLastGroup;
+const lastGroupBtn = document.getElementById("last-group-btn");
+lastGroupBtn.onclick = selectLastGroup;
 
 function selectLastGroup(event) {
   if (lastGroup) {
@@ -956,6 +965,20 @@ function selectLastGroup(event) {
     }
     selected = lastGroup;
     lastGroup.classList.add("selected");
+    pinSelected(selected);
+  }
+}
+
+const lastItemBtn = document.getElementById("last-item-btn");
+lastItemBtn.onclick = selectLastItem;
+
+function selectLastItem(event) {
+  if (lastItem) {
+    if (selected) {
+      selected.classList.remove("selected");
+    }
+    selected = lastItem;
+    lastItem.classList.add("selected");
     pinSelected(selected);
   }
 }
