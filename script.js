@@ -12,6 +12,8 @@ let resetHoldTimer = null;
 let lastGroup = null;
 let lastItem = null;
 
+let enableSortPriority = false;
+
 // Functions
 function clearPinZone() {
   const pinZone = document.getElementById("pin-zone");
@@ -247,7 +249,9 @@ function moveClusterToPriority(button) {
   });
   wrapper.classList.add("recent");
   //wrapper.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  //sortPriorityLane();
+  if (enableSortPriority) {
+    sortPriorityLane();
+  }
   updateButtonSearch(button);
 }
 
@@ -846,7 +850,9 @@ function loadState() {
   for (let i = 0; i < panel_moves.length; i++) {
     moveClusterToPriority(panel_moves[i]);
   }
-  //sortPriorityLane();
+  if (enableSortPriority) {
+    sortPriorityLane();
+  }
 }
 
 checkCategories();
@@ -978,5 +984,13 @@ function selectLastItem(event) {
     selected = lastItem;
     lastItem.classList.add("selected");
     pinSelected(selected);
+  }
+}
+
+const toggleSortBtn = document.getElementById("toggle-sort-btn");
+toggleSortBtn.onclick = () => {
+  enableSortPriority = !enableSortPriority;
+  if (enableSortPriority) {
+    sortPriorityLane();
   }
 }
