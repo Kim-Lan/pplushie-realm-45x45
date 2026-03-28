@@ -29,6 +29,7 @@ body {
 
 #app {
   min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -51,10 +52,10 @@ body {
   padding: 10px 18px;
 }
 
-@media (max-width: 768px) {
-  .shortcuts {
-      display: none;
-  }
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .title {
@@ -68,6 +69,7 @@ body {
   padding: 12px 18px;
   color: var(--muted);
   font-size: clamp(10px, 1.2vw, 12px);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .page-footer a {
@@ -125,7 +127,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 10px 30px var(--shadow);
   overflow: auto;
-  max-height: calc(100vh - 140px);
+  max-height: calc(100vh - 170px);
 }
 
 #board-wrapper.shuffle-flash {
@@ -185,11 +187,11 @@ td.tile-cell.expanded {
   z-index: 1000;
 }
 
-tr:nth-child(odd) td:nth-child(even) button {
+table#the_table tr:nth-child(odd) td:nth-child(even) button {
   background-color: rgba(0, 0, 0, 0.025);
 }
 
-tr:nth-child(even) td:nth-child(odd) button {
+table#the_table tr:nth-child(even) td:nth-child(odd) button {
   background-color: rgba(0, 0, 0, 0.025);
 }
 
@@ -435,6 +437,12 @@ button.bigbut.expanded .cluster-full {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.5px;
+}
+
+@media all and (max-width: 768px) {
+  .keycap {
+    display: none;
+  }
 }
 
 #reset-indicator {
