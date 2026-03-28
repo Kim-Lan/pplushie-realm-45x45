@@ -173,7 +173,7 @@ function buildClusterSummary(cluster) {
   if (cluster.length == 2) {
     return `${cluster[0]}; ${cluster[1]}`;
   }
-  return `${cluster[0]}, ${cluster[1]}, ... <span class="cluster-count">[${cluster.length}]</span>`;
+  return `<span class="cluster-count">[${cluster.length}]</span> ${cluster[0]}, ${cluster[1]}, ... `;
 }
 
 function updateButtonSearch(button) {
