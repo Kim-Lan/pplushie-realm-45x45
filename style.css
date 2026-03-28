@@ -140,7 +140,7 @@ body {
 
 #priority-lane {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 210px));
   gap: 12px;
   margin: 14px;
   justify-content: start;
