@@ -247,7 +247,7 @@ function moveClusterToPriority(button) {
   });
   wrapper.classList.add("recent");
   //wrapper.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  sortPriorityLane();
+  //sortPriorityLane();
   updateButtonSearch(button);
 }
 
@@ -846,7 +846,7 @@ function loadState() {
   for (let i = 0; i < panel_moves.length; i++) {
     moveClusterToPriority(panel_moves[i]);
   }
-  sortPriorityLane();
+  //sortPriorityLane();
 }
 
 checkCategories();
