@@ -162,7 +162,7 @@ function wireButton(button) {
     if (!didMatch) {
       saveState();
     }
-    if (score == 1980) {
+    if (score >= 1980) {
       window.alert("You win!!");
       startFireworks();
     }
