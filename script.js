@@ -792,6 +792,10 @@ function loadState() {
   mistakes = Number(localStorage.getItem("mistakes") || 0);
   document.getElementById("mistakes").textContent = mistakes;
 
+  enableSortPriority = JSON.parse(localStorage.getItem("enableSortPriority"));
+  const toggleSortBtn = document.getElementById("toggle-sort-btn");
+  toggleSortBtn.textContent = enableSortPriority ? "disable sort" : "enable sort";
+
   const matchedList = document.getElementById("priority-lane");
   matchedList.innerHTML = "";
   const storedPanel = localStorage.getItem("panelClusters");
@@ -990,7 +994,11 @@ function selectLastItem(event) {
 const toggleSortBtn = document.getElementById("toggle-sort-btn");
 toggleSortBtn.onclick = () => {
   enableSortPriority = !enableSortPriority;
+  localStorage.setItem("enableSortPriority", JSON.stringify(enableSortPriority));
   if (enableSortPriority) {
+    toggleSortBtn.textContent = "disable sort";
     sortPriorityLane();
+  } else {
+    toggleSortBtn.textContent = "enable sort";
   }
 }
