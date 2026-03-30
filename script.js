@@ -513,7 +513,7 @@ function getRandomHexColor() {
 }
 
 function finishCategory(b) {
-  b.innerHTML = "<b>" + b.category + "</b>";
+  b.firstChild.innerHTML = "<b>" + b.category + "</b>";
   b.disabled = true;
   b.classList.add("completed");
   b.style.background = stringToLightColor(b.category);
@@ -804,7 +804,7 @@ function loadState() {
         }
         const button = createClusterButton(block.category, block.cluster);
         if (block.cluster.length == 45) {
-		  button.innerHTML = "<b>" + button.category + "</b>";
+		      button.firstChild.innerHTML = "<b>" + button.category + "</b>";
           button.disabled = true;
           button.classList.add("completed");
           button.style.background = stringToLightColor(block.category);
