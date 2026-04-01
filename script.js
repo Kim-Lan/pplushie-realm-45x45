@@ -2,7 +2,7 @@
 
 Object.keys(localStorage)
   .forEach(x =>
-    localStorage.setItem(location.pathname + ":" + x, localStorage.getItem(x));
+    localStorage.setItem(`${location.pathname}:${x}`, localStorage.getItem(x))
   );
 
 // function clearLocalStorage() {
