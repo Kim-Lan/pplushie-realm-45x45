@@ -1,19 +1,10 @@
-function keysStartWithPath(keys) {
-  keys.forEach(x => {
-    if (x.startsWith(location.pathname)) {
-      return true;
-    }
-  });
-  return false;
-}
-
-const keys = Object.keys(localStorage)
-if (!keysStartWithPath(keys)) {
-  keys.forEach(x => {
+const keys = Object.keys(localStorage);
+keys.forEach(x => {
+  if (!x.startsWith("/")) {
     localStorage.setItem(`${location.pathname}:${x}`, localStorage.getItem(x));
     localStorage.removeItem(x);
-  });
-}
+  }
+});
 
 function clearLocalStorage() {
   // Source - https://stackoverflow.com/a/59081878
