@@ -1,9 +1,9 @@
 // import 'https://tomashubelbauer.github.io/github-pages-local-storage/index.js';
 
-Object.keys(localStorage)
-  .forEach(x =>
-    localStorage.setItem(`${location.pathname}:${x}`, localStorage.getItem(x))
-  );
+const keys = Object.keys(localStorage)
+keys.forEach(x =>
+  localStorage.setItem(`${location.pathname}:${x}`, localStorage.getItem(x))
+);
 
 // function clearLocalStorage() {
 //   // Source - https://stackoverflow.com/a/59081878
