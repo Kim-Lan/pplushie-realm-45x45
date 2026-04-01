@@ -1,3 +1,22 @@
+// import 'https://tomashubelbauer.github.io/github-pages-local-storage/index.js';
+
+Object.keys(localStorage)
+  .forEach(x =>
+    localStorage.setItem(location.pathname + ":" + x, localStorage.getItem(x));
+  );
+
+// function clearLocalStorage() {
+//   // Source - https://stackoverflow.com/a/59081878
+//   // Posted by tbenst, modified by community. See post 'Timeline' for change history
+//   // Retrieved 2026-03-31, License - CC BY-SA 4.0
+// 
+//   Object.keys(localStorage)
+//     .filter(x =>
+//       x.startsWith(location.pathname))
+//     .forEach(x => 
+//       localStorage.removeItem(x));
+// }
+
 // Globals
 const M = 45; // Board size
 
